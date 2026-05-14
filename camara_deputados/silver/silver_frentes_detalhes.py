@@ -23,10 +23,6 @@ from datetime import datetime
 
 # COMMAND ----------
 
-# MAGIC %run ../utils/delta_writer
-
-# COMMAND ----------
-
 # ==========================================
 # CAMINHOS
 # ==========================================

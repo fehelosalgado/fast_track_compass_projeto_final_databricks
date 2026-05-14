@@ -23,10 +23,6 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-# MAGIC %run ../utils/delta_writer
-
-# COMMAND ----------
-
 # ==========================================
 # LEITURA SILVER EVENTOS
 # ==========================================
