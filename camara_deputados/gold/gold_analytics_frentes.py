@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 # ==========================================
 # IMPORTS
 # ==========================================
@@ -405,6 +409,20 @@ display(df_analytics)
 
 print(
     "Tabela criada: workspace.gold.analytics_frentes"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_frentes",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_analytics.count(),
+    error_message=None
 )
 
 # COMMAND ----------

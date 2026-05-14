@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 # ==========================================
 # IMPORTS
 # ==========================================
@@ -220,6 +224,20 @@ print(
 
 print(
     "Tabela criada: workspace.gold.dim_cpi"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.dim_cpi",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=dim_cpi.count(),
+    error_message=None
 )
 
 # COMMAND ----------

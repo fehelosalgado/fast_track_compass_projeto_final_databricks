@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 df = spark.table(
     "workspace.silver.frentes"
 )
@@ -36,6 +40,20 @@ df_gold = (
     .saveAsTable(
         "workspace.gold.dim_frente"
     )
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.dim_frente",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_gold.count(),
+    error_message=None
 )
 
 # COMMAND ----------

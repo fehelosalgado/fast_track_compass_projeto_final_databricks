@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 df = spark.table("workspace.gold.fato_despesas")
@@ -80,6 +84,20 @@ df_cat_final = (
 
 df_cat_final.write.mode("overwrite").saveAsTable(
     "workspace.gold.analytics_ceap_categoria_uf"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_ceap_categoria_uf",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_cat_final.count(),
+    error_message=None
 )
 
 # COMMAND ----------

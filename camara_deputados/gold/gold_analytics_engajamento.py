@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql.window import Window
 
 # COMMAND ----------
@@ -134,4 +138,18 @@ display(df_analytics)
     .saveAsTable(
         "workspace.gold.analytics_engajamento"
     )
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_engajamento",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_analytics.count(),
+    error_message=None
 )

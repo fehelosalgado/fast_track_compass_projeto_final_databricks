@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 # ==========================================
 # IMPORTS
 # ==========================================
@@ -319,6 +323,20 @@ print(
 
 print(
     "Tabela criada: workspace.gold.bridge_frente_deputado"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.bridge_frente_deputado",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_bridge.count(),
+    error_message=None
 )
 
 # COMMAND ----------

@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 # COMMAND ----------
@@ -75,6 +79,20 @@ bridge = bridge.dropDuplicates()
 
 print(
     "Tabela criada: workspace.gold.bridge_cpi_eventos"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.bridge_cpi_eventos",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=bridge.count(),
+    error_message=None
 )
 
 # COMMAND ----------

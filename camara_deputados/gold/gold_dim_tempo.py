@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 df_tempo = (
@@ -121,6 +125,20 @@ display(df_tempo)
     .saveAsTable(
         "workspace.gold.dim_tempo"
     )
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.dim_tempo",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_tempo.count(),
+    error_message=None
 )
 
 # COMMAND ----------

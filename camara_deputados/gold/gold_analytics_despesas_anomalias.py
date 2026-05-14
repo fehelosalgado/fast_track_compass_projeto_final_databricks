@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 # ==========================================
 # IMPORTS
 # ==========================================
@@ -163,6 +167,20 @@ display(df_final)
     .saveAsTable(
         "workspace.gold.analytics_despesas_anomalias"
     )
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_despesas_anomalias",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_final.count(),
+    error_message=None
 )
 
 # COMMAND ----------

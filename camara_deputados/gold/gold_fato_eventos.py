@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 # Imports
 from pyspark.sql import functions as F
 
@@ -104,6 +108,20 @@ print(
     .saveAsTable(
         "workspace.gold.fato_eventos"
     )
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.fato_eventos",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_gold.count(),
+    error_message=None
 )
 
 # COMMAND ----------

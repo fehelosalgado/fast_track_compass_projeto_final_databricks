@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 # COMMAND ----------
@@ -146,6 +150,20 @@ df_final = (
 
 print(
     "Tabela criada: workspace.gold.analytics_cpi_auditoria"
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_cpi_auditoria",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_final.count(),
+    error_message=None
 )
 
 # COMMAND ----------

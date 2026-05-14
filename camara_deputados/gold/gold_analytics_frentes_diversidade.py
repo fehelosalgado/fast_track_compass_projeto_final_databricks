@@ -1,4 +1,8 @@
 # Databricks notebook source
+# MAGIC %run ../utils/metadata_manager
+
+# COMMAND ----------
+
 from pyspark.sql import functions as F
 
 df_frente = (
@@ -155,4 +159,18 @@ display(
         "workspace.gold.analytics_frentes_diversidade"
     )
 
+)
+
+# COMMAND ----------
+
+# ==========================================
+# METADATA
+# ==========================================
+
+register_execution(
+    table_name=f"gold.analytics_frentes_diversidade",
+    endpoint=None,
+    status="SUCCESS",
+    record_count=df_hhi.count(),
+    error_message=None
 )
