@@ -7,10 +7,6 @@
 
 # COMMAND ----------
 
-# MAGIC %run ../utils/delta_writer
-
-# COMMAND ----------
-
 # MAGIC %run ../utils/metadata_manager
 
 # COMMAND ----------
@@ -30,7 +26,7 @@ endpoint = dbutils.widgets.get("endpoint")
 
 # COMMAND ----------
 
-table_name = f"bronze_{endpoint}"
+table_name = f"bronze.{endpoint}"
 
 # COMMAND ----------
 
@@ -111,11 +107,15 @@ try:
     # WRITE DELTA
     # ==========================================
 
-    write_delta(
-        df=df,
-        path=bronze_path,
-        mode="overwrite"
+    (
+        df.write
+        .format("delta")
+        .mode("overwrite")
+        .option("overwriteSchema", "true")
+        .save(bronze_path)
     )
+
+    print(f"Tabela salva em: {bronze_path}")
 
     # ==========================================
     # REGISTRO EXECUÇÃO

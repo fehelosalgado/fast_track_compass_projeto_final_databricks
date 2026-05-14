@@ -14,10 +14,6 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-# MAGIC %run ../utils/delta_writer
-
-# COMMAND ----------
-
 # MAGIC %run ../utils/metadata_manager
 
 # COMMAND ----------
@@ -196,11 +192,15 @@ print(bronze_path)
 # WRITE DELTA
 # ==========================================
 
-write_delta(
-    df=df,
-    path=bronze_path,
-    mode="overwrite"
+(
+    df.write
+    .format("delta")
+    .mode("overwrite")
+    .option("overwriteSchema", "true")
+    .save(bronze_path)
 )
+
+print(f"Tabela salva em: {bronze_path}")
 
 # COMMAND ----------
 
