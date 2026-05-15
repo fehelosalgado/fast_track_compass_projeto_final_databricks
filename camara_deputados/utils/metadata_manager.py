@@ -152,27 +152,7 @@ def get_last_execution(
 
 # COMMAND ----------
 
-# MAGIC %skip
-# MAGIC dbutils.fs.rm(
-# MAGIC     "/Volumes/workspace/default/camara_deputados/logs/metadata_ingestion_control",
-# MAGIC     recurse=True
-# MAGIC )
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC initialize_metadata_table()
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC display(
-# MAGIC     spark.read.format("delta").load(
-# MAGIC         "/Volumes/workspace/default/camara_deputados/logs/metadata_ingestion_control"
-# MAGIC     )
-# MAGIC )
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC create_metadata_table()
+# Verifica se a tabela NÃO existe no catálogo do Spark
+if not spark.catalog.tableExists("workspace.metadata.ingestion_control"):
+    print("Tabela não encontrada. Criando tabela de metadados...")
+    create_metadata_table()

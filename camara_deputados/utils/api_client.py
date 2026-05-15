@@ -10,6 +10,8 @@ BASE_URL = "https://dadosabertos.camara.leg.br/api/v2"
 
 def build_incremental_params(
     endpoint,
+    dataInicio=None,
+    dataFim=None,
     last_execution=None
 ):
 
@@ -25,14 +27,17 @@ def build_incremental_params(
     # carga incremental
     if (
         endpoint in endpoints_incrementais
-        and last_execution is not None
+        and dataInicio is not None
+        and dataFim is not None
+        #and last_execution is not None        
     ):
 
-        params["dataInicio"] = (
-            last_execution.strftime("%Y-%m-%d")
-        )
-        #params["dataInicio"] = "2023-05-01"
-        #params["dataFim"] = "2024-01-01"
+        params["dataInicio"] = dataInicio
+        params["dataFim"] = dataFim
+
+        #params["dataInicio"] = (
+            #last_execution.strftime("%Y-%m-%d")
+        #)        
 
     # primeira carga
     elif endpoint in endpoints_incrementais:
@@ -86,26 +91,3 @@ def get_all_pages(
         time.sleep(0.2)
 
     return all_data
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC from datetime import datetime
-# MAGIC
-# MAGIC params = build_incremental_params(
-# MAGIC     datetime.now()
-# MAGIC )
-# MAGIC
-# MAGIC print(params)
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC dados = get_all_pages(
-# MAGIC     "eventos",
-# MAGIC     params={
-# MAGIC         "dataInicio": "2025-01-01"
-# MAGIC     }
-# MAGIC )
-# MAGIC
-# MAGIC print(len(dados))

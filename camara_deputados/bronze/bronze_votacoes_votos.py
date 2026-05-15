@@ -126,7 +126,7 @@ for idx, id_votacao in enumerate(lista_votacoes):
             })
 
         cont = cont + 1
-        
+
         if cont > 10:
             break
 

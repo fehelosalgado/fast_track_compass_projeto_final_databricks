@@ -231,3 +231,13 @@ except Exception as e:
     log_error(str(e))
 
     raise
+
+# COMMAND ----------
+
+display(
+    spark.read
+    .format("delta")
+    .load(
+        "/Volumes/workspace/default/camara_deputados/bronze/frentes_detalhes"
+    )
+)

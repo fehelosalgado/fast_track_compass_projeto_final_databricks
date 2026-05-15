@@ -1,16 +1,5 @@
 # Databricks notebook source
 # MAGIC %sql
-# MAGIC select 
-# MAGIC --*
-# MAGIC count(1)
-# MAGIC from
-# MAGIC workspace.silver.orgaos
-# MAGIC where 0=0
-# MAGIC and codTipoOrgao in (4, 20)
-
-# COMMAND ----------
-
-# MAGIC %sql
 # MAGIC SHOW TABLES IN workspace.default
 
 # COMMAND ----------

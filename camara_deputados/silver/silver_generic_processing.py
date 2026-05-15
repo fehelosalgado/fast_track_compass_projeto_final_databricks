@@ -1,12 +1,4 @@
 # Databricks notebook source
-# MAGIC %sql
-# MAGIC CREATE SCHEMA IF NOT EXISTS workspace.silver;
-# MAGIC CREATE SCHEMA IF NOT EXISTS workspace.gold;
-# MAGIC CREATE SCHEMA IF NOT EXISTS workspace.metadata;
-# MAGIC CREATE SCHEMA IF NOT EXISTS workspace.audit;
-
-# COMMAND ----------
-
 # ==========================================
 # WIDGETS
 # ==========================================
@@ -183,7 +175,6 @@ log_info(
 
 # MAGIC %sql
 # MAGIC select
-# MAGIC min(dataHoraFim),
-# MAGIC min(dataHoraInicio)
+# MAGIC (*)
 # MAGIC from
 # MAGIC workspace.silver.eventos

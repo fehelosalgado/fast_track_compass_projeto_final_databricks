@@ -15,14 +15,15 @@ from pyspark.sql import functions as F
 
 # COMMAND ----------
 
-dbutils.widgets.text(
-    "endpoint",
-    ""
-)
+dbutils.widgets.text("endpoint","")
+dbutils.widgets.text("dataInicio","")
+dbutils.widgets.text("dataFim","")
 
 # COMMAND ----------
 
 endpoint = dbutils.widgets.get("endpoint")
+dataInicio = dbutils.widgets.get("dataInicio")
+dataFim = dbutils.widgets.get("dataFim")
 
 # COMMAND ----------
 
@@ -48,6 +49,8 @@ try:
 
     params = build_incremental_params(
         endpoint=endpoint,
+        dataInicio=dataInicio,
+        dataFim=dataFim,
         last_execution=last_execution
     )    
 
@@ -146,24 +149,6 @@ except Exception as e:
     log_error(str(e))
 
     raise
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC spark.sql("""
-# MAGIC
-# MAGIC SELECT *
-# MAGIC FROM workspace.default.metadata_ingestion_control
-# MAGIC ORDER BY execution_time DESC
-# MAGIC
-# MAGIC """).display()
-
-# COMMAND ----------
-
-# MAGIC %skip
-# MAGIC %sql
-# MAGIC SELECT count(*)
-# MAGIC FROM workspace.default.bronze_deputados
 
 # COMMAND ----------
 
