@@ -12,10 +12,11 @@ A solução é executada via Databricks Workflows.
 
 Jobs:
 
+- job_master_pipeline
+- job_setting_environment
 - job_bronze_pipeline
 - job_silver_pipeline
 - job_gold_pipeline
-- job_master_pipeline
 
 ---
 
@@ -86,7 +87,7 @@ Os pipelines registram:
 Tabela utilizada:
 
 ```text
-workspace.default.metadata_ingestion_control
+workspace.metadata.ingestion_control
 ```
 
 ---
@@ -95,7 +96,7 @@ workspace.default.metadata_ingestion_control
 
 ## Bronze
 
-Sem dependências internas.
+Com dependências internas.
 
 ## Silver
 

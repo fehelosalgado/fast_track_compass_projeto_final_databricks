@@ -130,6 +130,7 @@ Estrutura:
 
 ```text
 job_master_pipeline
+    ├── job_setting_environment
     ├── job_bronze_pipeline
     ├── job_silver_pipeline
     └── job_gold_pipeline
